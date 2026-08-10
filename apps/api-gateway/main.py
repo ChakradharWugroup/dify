@@ -53,7 +53,7 @@ async def chat_completions(request: dict):
     
     # We will use HuggingFace's free inference API for Qwen in the cloud
     model = "Qwen/Qwen2.5-72B-Instruct"
-    hf_url = f"https://api-inference.huggingface.co/models/{model}/v1/chat/completions"
+    hf_url = "https://router.huggingface.co/hf-inference/v1/chat/completions"
     
     headers = {
         "Content-Type": "application/json",
