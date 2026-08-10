@@ -51,16 +51,16 @@ async def chat_completions(request: dict):
     # Forward the request to HuggingFace OpenAI-compatible Inference API
     hf_api_key = os.environ.get("HF_API_KEY", "")
     
-    # We will use HuggingFace's free inference API for Qwen in the cloud
-    model = "Qwen/Qwen2.5-72B-Instruct"
-    hf_url = "https://router.huggingface.co/hf-inference/v1/chat/completions"
+    # We will use the user's local Ollama via localtunnel
+    model = "qwen2.5:latest"
+    hf_url = "https://common-months-shine.loca.lt/v1/chat/completions"
     
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {hf_api_key}"
+        "bypass-tunnel-reminder": "true" # Required by localtunnel to bypass the warning page
     }
     
-    # Override the model in the payload for HuggingFace
+    # Override the model in the payload
     request["model"] = model
     
     # Strip parameters that HuggingFace might reject
